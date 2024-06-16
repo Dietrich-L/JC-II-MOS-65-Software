@@ -1,0 +1,7 @@
+( Compiler security check                 4.2.22 )
+hex  FB variable P 
+: .head cr ." Check Compiler Security " cr ;
+: _ID ( dup id. ) dup pfa dup ( dup 0 d. ) 0FF and P @ = ;
+: _IF if dup 0 d. swap ID. cr else swap drop endif ;
+: CS  ( P ! ) context @ @ .head begin _ID _IF lfa @ dup 0= until drop ;
+
