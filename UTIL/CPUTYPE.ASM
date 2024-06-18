@@ -22,7 +22,7 @@ PSTR	= $EA			;pointer for strings
 ;character definitions
 EOT	= $00
 CR	=	$d		;ASCII CARRIAGE RETURN
-;
+
 ;code section
 	ORG	TPA
 
@@ -52,10 +52,10 @@ cmos	lda	#CMOSMsg	;point to message
 MESSAGE	STA	PSTR		;DISPLAY THE MESSAGE
 	STY	PSTR+1
 	jmp	STROUT		;and return
-;
+
 ;messages
 opnmsg	DB	cr,'CPM-65 CPU TYPE TESTER V1.00',cr,EOT
 NMOSMsg	DB	cr,'**** CPU is NMOS - 6502 ****',CR,EOT
 CMOSMsg	DB	cr,'**** CPU is CMOS - 65C02 ****',CR,EOT
-;
+
 	END
