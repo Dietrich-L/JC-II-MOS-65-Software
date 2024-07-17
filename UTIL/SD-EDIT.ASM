@@ -1201,7 +1201,7 @@ HELPM	DB CLS,'   SD-EDIT V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30
 	DB ' -	read last sector',CR
 	DB ' R	read current sector	'
 	DB ' W	write current sector',CR
-	DB ' P	show partition data	'
+	DB ' Pn	show data partition n	'
 	DB ' Znn	wait for nn s   ',CR
 	DB ' >	save sector to buffer   '
 	DB ' <	get sector from buffer',CR

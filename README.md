@@ -52,7 +52,7 @@ Special thanks for support and testing goes to <br>Joerg Walke, Developer of the
           <tr>
             <td><span style="font-family: Courier New,Courier,monospace;">SD-EDIT<br>
               </span></td>
-            <td><span style="font-family: Courier New,Courier,monospace;">1.0<br>
+            <td><span style="font-family: Courier New,Courier,monospace;">1.1<br>
               </span></td>
             <td><span style="font-family: Courier New,Courier,monospace;">Simple
                 SD card sector editor<br>
