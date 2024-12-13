@@ -19,7 +19,7 @@ BOOT	=  $2000
 TPA	=  $3000
 
 CIN	= $E047
-COUT	= $E052
+BOUT	= $E044
 STRIN	= $E062
 STROUT	= $E083
 CMDDEV	= $E0BA
@@ -1258,7 +1258,7 @@ PRTSTR	STA PSTR		;print string EOSZ
 	LDY #0
 PRTSTR1	LDA (PSTR),Y
 	BEQ PRTSTRX		;$00 reached?
-	JSR COUT
+	JSR BOUT
 	INY
 	BNE PRTSTR1
 	INC PSTR+1
@@ -1272,7 +1272,7 @@ PRT2SP	JSR PRTSP
 
 PRTSP	LDA #SPACE
 
-PRTCHR	JMP COUT		;PRINTS A CHR
+PRTCHR	JMP BOUT		;PRINTS A CHR
 	
 
 
@@ -1353,7 +1353,7 @@ CMDTAB	DB 'Z'
 	DB $00
 
 ERRM1	DB ' Error $',EOT
-RTYMES	DB CR,'Retry	(Y/N) ? ',EOT
+RTYMES	DB CR,LF,'Retry	(Y/N) ? ',EOT
 
 ETYPTB	DB 'BIOS',$00,'BDOS',$00,'CCP',$00,$00
 	DB 'RSX',$00,$00,'USER',$00
@@ -1384,41 +1384,41 @@ DAYTAB	DB 'Montag',EOT,'Dienstag',EOT,'Mittwoch',EOT,'Donnerstag',EOT
 DAYM	DB ', den ',EOT
 
 
-STATM	DB CR,'I2C-Utility	V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30, EOT
+STATM	DB CR,LF,'I2C-Utility	V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30, EOT
 
-PROMPT	DB CR,'Command >',EOT
+PROMPT	DB CR,LF,'Command >',EOT
 
-CRLFM	DB '     ',CR,EOT
-CPOS1	DB CR,ESC,'M',EOT	;cursor to col 1
+CRLFM	DB '     ',CR,LF,EOT
+CPOS1	DB CR,EOT	;cursor to col 1
 
-TIME_M	DB CR,' Uhrzeit: ',EOT
+TIME_M	DB CR,LF,' Uhrzeit: ',EOT
 
-DATE_M	DB CR,'   Datum: ', EOT
+DATE_M	DB CR,LF,'   Datum: ', EOT
 
-INFO_M	DB CR,' I2C devices active',CR
-	DB ' dev   W   R',CR,EOT
+INFO_M	DB CR,LF,' I2C devices active',CR,LF
+	DB ' dev   W   R',CR,LF,EOT
 
 HELPM	DB CLS,'   I2C-Utility V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30
-	DB '			(c) 3.7.2021',CR
-	DB 'Command Summary:',CR
+	DB '			(c) 3.7.2021',CR,LF
+	DB 'Command Summary:',CR,LF
 	DB ' K	display date	         '
-	DB ' Z	 display time',CR
-;	DB ' Ldv,iiii  load ID data set from dev to buffer',CR
+	DB ' Z	 display time',CR,LF
+;	DB ' Ldv,iiii  load ID data set from dev to buffer',CR,LF
 	DB ' Baddr  set buffer to addr   '
-	DB ' Sdv,rg,by  set dev, reg, byte',CR
-	DB ' Gdv,rg,nn  get nn bytes from dev, reg ',CR
-	DB ' Rdv,regw,nnnn  read from dev, reg16, nnnn bytes to buffer',CR
-	DB ' Wdv,regw,nnnn  write to  dev, reg16, nnnn bytes from buffer',CR
-	DB ' CHad,by,by,...	change value at ad with by',CR
-	DB ' CAad,<string>	change at ad with string',CR
-	DB ' Mn,m,j     move to n from m,j',CR
+	DB ' Sdv,rg,by  set dev, reg, byte',CR,LF
+	DB ' Gdv,rg,nn  get nn bytes from dev, reg ',CR,LF
+	DB ' Rdv,regw,nnnn  read from dev, reg16, nnnn bytes to buffer',CR,LF
+	DB ' Wdv,regw,nnnn  write to  dev, reg16, nnnn bytes from buffer',CR,LF
+	DB ' CHad,by,by,...	change value at ad with by',CR,LF
+	DB ' CAad,<string>	change at ad with string',CR,LF
+	DB ' Mn,m,j     move to n from m,j',CR,LF
 	DB ' Dnnnn,mmmm	dump memory	 '
-	DB ' Fnnnn,mmmm,cc fill memory',CR
+	DB ' Fnnnn,mmmm,cc fill memory',CR,LF
 	DB ' I  info I2C devs active     '
-	DB ' /nn repeat nn times',CR
+	DB ' /nn repeat nn times',CR,LF
 	DB ' ?	prints this screen	 '
-	DB ' ',SEMI,'	command separator',CR
-	DB ' X	exit to CP/M		 ',CR
+	DB ' ',SEMI,'	command separator',CR,LF
+	DB ' X	exit to CP/M		 ',CR,LF
 	DB EOT
 
 

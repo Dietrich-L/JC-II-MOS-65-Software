@@ -1,4 +1,4 @@
-;fig-FORTH   JC II M/OS-65 Version 
+;fig-FORTH   JC II M/OS-65 Version for ROM V1.1.4 with FGC
 ;by D. Lausberg    (c) 1990
 ;V1.0	7.1.90
 ;V1.1  21.1.95		some improvements, debug code removed
@@ -19,7 +19,7 @@ BMAG	= SSIZE+4*NBUF
 
 ;--- System Addresses
 BOS	= $10
-TOS	= $C0
+TOS	= $B4
 N	= TOS+8
 IP	= N+8
 W	= IP+3
@@ -1966,15 +1966,15 @@ XEMIT	TYA			;WRITE ASCII TO SCREEN
 	JMP POP
 
 
-XQTER	JSR V_INPT		;GET CONSOLE STATUS
+XQTER	JSR CGET		;GET CONSOLE STATUS
 	LDA #0
 	BCC XQTER1		;0 IF NO KEY
 	LDA #1			;else 1
 XQTER1	JMP PUSH0A
 
 
-XKEY	JSR V_INPT		;READS 1 KEY TO STACK
-	BCC XKEY		;loop if no byte
+XKEY	JSR ROM_CONIN		;READS 1 KEY TO STACK
+	;BCC XKEY		;loop if no byte
 	AND #$7F		;ASCII only
 	JMP PUSH0A
 
@@ -1997,11 +1997,11 @@ PRTCHR	PHA
 ;	JSR BDOSJP
 PRTCHR1 PLA
 	AND #$7F
-	JMP V_OUTP
+	JMP ROM_CONOUT
 
 
-V_INPT	JMP (VEC_IN)		; non halting scan input device
-V_OUTP	JMP (VEC_OUT)		; send byte to output device
+;V_INPT	JMP (VEC_IN)		; non halting scan input device
+;V_OUTP	JMP (VEC_OUT)		; send byte to output device
 
 
 L3060	DB $83,'R/',$D7		;R/W 1 SECTOR in RAMdisc

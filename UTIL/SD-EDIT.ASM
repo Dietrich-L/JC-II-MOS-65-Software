@@ -25,7 +25,7 @@ BUFBEG	=  $8000
 
 
 CIN	= $E047
-COUT	= $E052
+BOUT	= $E044
 STRIN	= $E062
 STROUT	= $E083
 CMDDEV	= $E0BA
@@ -1079,7 +1079,7 @@ PRTSTR	STX PSTR		;print string EOSZ
 	LDY #0
 PRTSTR1	LDA (PSTR),Y
 	BEQ PRTSTRX		;$00 reached?
-	JSR COUT
+	JSR BOUT
 	INY
 	BNE PRTSTR1
 	INC PSTR+1
@@ -1090,7 +1090,7 @@ PRTSTRX	CLC
 
 
 
-PRTCHR	JMP COUT		;PRINTS A CHR
+PRTCHR	JMP BOUT		;PRINTS A CHR
 
 
 INCCPV	INC CCPV 		;INC CCPV
@@ -1167,51 +1167,51 @@ MINUS_2	DB $FE,$FF,$FF,$FF	;-2
 
 ;--------------
 
-BANNER	DB CR,CR,'SD-EDIT V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30,CR,EOT
+BANNER	DB CR,LF,CR,LF,'SD-EDIT V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30,CR,LF,EOT
 
-STATM1	DB CR,'SD-EDIT V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30
+STATM1	DB CR,LF,'SD-EDIT V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30
 	DB '  SD-Drive',EOT
 
 STATM2	DB ':  Sector ', EOT
 
 STATM3	DB '   LBA ',EOT
 
-P_HEAD	DB CR,'Part#   Bootflag  Type     Begin    Length',CR,EOT
+P_HEAD	DB CR,LF,'Part#   Bootflag  Type     Begin    Length',CR,LF,EOT
 
-PX_MES1	DB CR,'Partition # '
-PXMES1A	DB '1',CR,'           Begin: ',EOT
+PX_MES1	DB CR,LF,'Partition # '
+PXMES1A	DB '1',CR,LF,'           Begin: ',EOT
 PX_MES2	DB '   Length: ',EOT
-PX_MES3	DB CR,'      Media Byte: ',EOT
+PX_MES3	DB CR,LF,'      Media Byte: ',EOT
 PX_MES4 DB '         FAT',EOT
 PX_MES5	DB '      Sectors/Cluster: ',EOT
-PX_MES6	DB CR,'Reserved Sectors: ',EOT
+PX_MES6	DB CR,LF,'Reserved Sectors: ',EOT
 PX_MES7	DB '    # of FATs: ',EOT
 PX_MES8	DB '      FAT Length: ',EOT
-PX_MES9	DB CR,'        FAT Base: ',EOT
+PX_MES9	DB CR,LF,'        FAT Base: ',EOT
 PX_MESA	DB '                 Root Dir Base: ',EOT
 
-PROMPT	DB CR,'Command >',EOT
+PROMPT	DB CR,LF,'Command >',EOT
 
 HELPM	DB CLS,'   SD-EDIT V',VERSION/16+$30,'.',VERSION*$1000/$1000+$30
-	DB '			(c) 18.7.2023',CR
-	DB 'Command Summary:',CR
+	DB '			(c) 18.7.2023',CR,LF
+	DB 'Command Summary:',CR,LF
 	DB ' D	dump current Sector	'
-	DB ' Lnnnnnn  read LBA nnnnnn	',CR
+	DB ' Lnnnnnn  read LBA nnnnnn	',CR,LF
 	DB ' +	read next sector	'
-	DB ' -	read last sector',CR
+	DB ' -	read last sector',CR,LF
 	DB ' R	read current sector	'
-	DB ' W	write current sector',CR
+	DB ' W	write current sector',CR,LF
 	DB ' Pn	show data partition n	'
-	DB ' Znn	wait for nn s   ',CR
+	DB ' Znn	wait for nn s   ',CR,LF
 	DB ' >	save sector to buffer   '
-	DB ' <	get sector from buffer',CR
+	DB ' <	get sector from buffer',CR,LF
 	DB ' Baddr set buffer to addr	'
-	DB ' /nn	repeat nn times',CR
-	DB ' CHad,by,by,...	change value at ad with by',CR
-	DB ' CAad,<string>	change at ad with string',CR
+	DB ' /nn	repeat nn times',CR,LF
+	DB ' CHad,by,by,...	change value at ad with by',CR,LF
+	DB ' CAad,<string>	change at ad with string',CR,LF
 	DB ' ?	prints this screen	'
-	DB ' ',SEMI,'	command separator',CR
-	DB ' X	exit to CP/M		',CR
+	DB ' ',SEMI,'	command separator',CR,LF
+	DB ' X	exit to CP/M		',CR,LF
 	DB EOT
 
 
