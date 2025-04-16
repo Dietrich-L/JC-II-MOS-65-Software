@@ -18,13 +18,13 @@ NBUF	= 4
 BMAG	= SSIZE+4*NBUF
 
 ;--- System Addresses
-BOS	= $10
-TOS	= $B4
+BOS	= $1A		;$14..$19 expansion card base adresses
+TOS	= $B0
 N	= TOS+8
 IP	= N+8
 W	= IP+3
 UP	= W+2
-XSAVE	= UP+2
+XSAVE	= UP+2		;$C8 ff. ROM usage
 
 BLKBUF	= $DC
 
