@@ -67,12 +67,11 @@ Special thanks for support and testing goes to <br>Joerg Walke, Developer of the
               </span></td>
           </tr>
           <tr>
-            <td><span style="font-family: Courier New,Courier,monospace;">  <br>
+            <td><span style="font-family: Courier New,Courier,monospace;"> MKBOOT<br>
               </span></td>
-            <td><span style="font-family: Courier New,Courier,monospace;">  <br>
+            <td><span style="font-family: Courier New,Courier,monospace;"> 1.1<br>
               </span></td>
-            <td><span style="font-family: Courier New,Courier,monospace;"> 
-                 <br>
+            <td><span style="font-family: Courier New,Courier,monospace;"> Utility to prepare SD-Cards for the JC-][<br>
               </span></td>
           </tr>
                    </tr>
